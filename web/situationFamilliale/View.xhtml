@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SituationFamillialeViewDlg" widgetVar="SituationFamillialeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSituationFamillialeTitle}">
+            <h:form id="SituationFamillialeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{situationFamillialeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSituationFamillialeLabel_libelle}"/>
+                        <h:outputText value="#{situationFamillialeController.selected.libelle}" title="#{bundle.ViewSituationFamillialeTitle_libelle}"/>
+                        <h:outputText value="#{bundle.ViewSituationFamillialeLabel_id}"/>
+                        <h:outputText value="#{situationFamillialeController.selected.id}" title="#{bundle.ViewSituationFamillialeTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SituationFamillialeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
