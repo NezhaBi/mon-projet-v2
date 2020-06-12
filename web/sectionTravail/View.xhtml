@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SectionTravailViewDlg" widgetVar="SectionTravailViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSectionTravailTitle}">
+            <h:form id="SectionTravailViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sectionTravailController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSectionTravailLabel_chef}"/>
+                        <h:outputText value="#{sectionTravailController.selected.chef}" title="#{bundle.ViewSectionTravailTitle_chef}"/>
+                        <h:outputText value="#{bundle.ViewSectionTravailLabel_libelle}"/>
+                        <h:outputText value="#{sectionTravailController.selected.libelle}" title="#{bundle.ViewSectionTravailTitle_libelle}"/>
+                        <h:outputText value="#{bundle.ViewSectionTravailLabel_id}"/>
+                        <h:outputText value="#{sectionTravailController.selected.id}" title="#{bundle.ViewSectionTravailTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SectionTravailViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
