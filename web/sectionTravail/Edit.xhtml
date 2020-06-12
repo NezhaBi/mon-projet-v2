@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SectionTravailEditDlg" widgetVar="SectionTravailEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSectionTravailTitle}">
+            <h:form id="SectionTravailEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sectionTravailController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSectionTravailLabel_chef}" for="chef" />
+                        <p:selectOneMenu id="chef" value="#{sectionTravailController.selected.chef}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personneController.itemsAvailableSelectOne}"
+                                           var="chefItem"
+                                           itemValue="#{chefItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSectionTravailLabel_libelle}" for="libelle" />
+                        <p:inputText id="libelle" value="#{sectionTravailController.selected.libelle}" title="#{bundle.EditSectionTravailTitle_libelle}" />
+                        <p:outputLabel value="#{bundle.EditSectionTravailLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{sectionTravailController.selected.id}" title="#{bundle.EditSectionTravailTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sectionTravailController.update}" value="#{bundle.Save}" update="display,:SectionTravailListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SectionTravailEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SectionTravailEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
