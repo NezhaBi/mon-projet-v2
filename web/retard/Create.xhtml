@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RetardCreateDlg" widgetVar="RetardCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateRetardTitle}">
+            <h:form id="RetardCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{retardController.selected != null}">
+                       <p:outputLabel value="#{bundle.CreateRetardLabel_personne}" for="personne" />
+                        <p:selectOneMenu id="personne" value="#{retardController.selected.personne}" >
+                            <f:selectItems value="#{personneController.itemsAvailableSelectOne}"
+                                           var="personneItem"
+                                           itemValue="#{personneItem}" itemLabel="#{personneItem.matricule}"/>
+                        </p:selectOneMenu>
+                      <p:outputLabel value="#{bundle.CreateRetardLabel_motifRetard}" for="motifRetard" />
+                        <p:selectOneMenu id="motifRetard" value="#{retardController.selected.motifRetard}" >
+                            <f:selectItems value="#{motifRetardController.itemsAvailableSelectOne}"
+                                           var="motifRetardItem"
+                                           itemValue="#{motifRetardItem}"/>
+                        </p:selectOneMenu>
+                         <p:outputLabel value="#{bundle.CreateRetardLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{retardController.selected.description}" title="#{bundle.CreateRetardTitle_description}" />
+                         <p:outputLabel value="#{bundle.CreateRetardLabel_nombreHeure}" for="nombreHeure" />
+                        <p:inputText id="nombreHeure" value="#{retardController.selected.nombreHeure}" title="#{bundle.CreateRetardTitle_nombreHeure}" />
+                        <p:outputLabel value="#{bundle.CreateRetardLabel_dateRetard}" for="dateRetard" />
+                        <p:calendar id="dateRetard" pattern="dd/MM/yyyy HH:mm:ss" value="#{retardController.selected.dateRetard}" title="#{bundle.EditRetardTitle_dateRetard}"  showOn="button"/>
+                        
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{retardController.create}" value="#{bundle.Save}" update="display,:RetardListForm:datalist,:growl" oncomplete="handleSubmit(args,'RetardCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RetardCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
