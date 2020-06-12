@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TacheViewDlg" widgetVar="TacheViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTacheTitle}">
+            <h:form id="TacheViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tacheController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTacheLabel_dateDebutEstime}"/>
+                        <h:outputText value="#{tacheController.selected.dateDebutEstime}" title="#{bundle.ViewTacheTitle_dateDebutEstime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTacheLabel_dateDebutReel}"/>
+                        <h:outputText value="#{tacheController.selected.dateDebutReel}" title="#{bundle.ViewTacheTitle_dateDebutReel}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTacheLabel_dateFinEstime}"/>
+                        <h:outputText value="#{tacheController.selected.dateFinEstime}" title="#{bundle.ViewTacheTitle_dateFinEstime}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTacheLabel_dateFintReel}"/>
+                        <h:outputText value="#{tacheController.selected.dateFintReel}" title="#{bundle.ViewTacheTitle_dateFintReel}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTacheLabel_id}"/>
+                        <h:outputText value="#{tacheController.selected.id}" title="#{bundle.ViewTacheTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewTacheLabel_note}"/>
+                        <h:outputText value="#{tacheController.selected.note}" title="#{bundle.ViewTacheTitle_note}"/>
+                        <h:outputText value="#{bundle.ViewTacheLabel_personne}"/>
+                        <h:outputText value="#{tacheController.selected.personne}" title="#{bundle.ViewTacheTitle_personne}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TacheViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

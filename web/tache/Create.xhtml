@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TacheCreateDlg" widgetVar="TacheCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTacheTitle}">
+            <h:form id="TacheCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tacheController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTacheLabel_personne}" for="personne" />
+                        <p:selectOneMenu id="personne" value="#{tacheController.selected.personne}" >
+                            <f:selectItems value="#{personneController.itemsAvailableSelectOne}"
+                                           var="personneItem"
+                                           itemValue="#{personneItem}" itemLabel="#{personneItem.matricule}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTacheLabel_dateDebutEstime}" for="dateDebutEstime" />
+                        <p:calendar id="dateDebutEstime" pattern="dd/MM/yyyy HH:mm:ss" value="#{tacheController.selected.dateDebutEstime}" title="#{bundle.EditTacheTitle_dateDebutEstime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTacheLabel_dateFinEstime}" for="dateFinEstime" />
+                        <p:calendar id="dateFinEstime" pattern="dd/MM/yyyy HH:mm:ss" value="#{tacheController.selected.dateFinEstime}" title="#{bundle.EditTacheTitle_dateFinEstime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTacheLabel_dateDebutReel}" for="dateDebutReel" />
+                        <p:calendar id="dateDebutReel" pattern="dd/MM/yyyy HH:mm:ss" value="#{tacheController.selected.dateDebutReel}" title="#{bundle.EditTacheTitle_dateDebutReel}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTacheLabel_dateFintReel}" for="dateFintReel" />
+                        <p:calendar id="dateFintReel" pattern="dd/MM/yyyy HH:mm:ss" value="#{tacheController.selected.dateFintReel}" title="#{bundle.EditTacheTitle_dateFintReel}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTacheLabel_note}" for="note" />
+                        <p:inputText id="note" value="#{tacheController.selected.note}" title="#{bundle.CreateTacheTitle_note}" />
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tacheController.create}" value="#{bundle.Save}" update="display,:TacheListForm:datalist,:growl" oncomplete="handleSubmit(args,'TacheCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TacheCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
